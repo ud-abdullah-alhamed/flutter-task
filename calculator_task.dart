@@ -1,55 +1,37 @@
 import 'dart:io';
 
 void main() {
-  while (true) {
-    // Get user input for the first number
-    stdout.write("Enter the first number: ");
-    double firstNumber = double.parse(stdin.readLineSync()!);
+  double num1, num2;
+  String operator;
 
-    // Get user input for the operator
-    stdout.write("Enter an operator (+, -, *, /): ");
-    String operator = stdin.readLineSync()!;
+  print("Enter the first number: ");
+  num1 = double.parse(stdin.readLineSync().toString());
 
-    // Get user input for the second number
-    stdout.write("Enter the second number: ");
-    double secondNumber = double.parse(stdin.readLineSync()!);
+  print("Enter the second number: ");
+  num2 = double.parse(stdin.readLineSync().toString());
 
-    double result;
+  print("Enter the operator (+, -, *, /): ");
+  operator = stdin.readLineSync().toString();
 
-    // Perform the calculation based on the operator
-    switch (operator) {
-      case '+':
-        result = firstNumber + secondNumber;
-        break;
-      case '-':
-        result = firstNumber - secondNumber;
-        break;
-      case '*':
-        result = firstNumber * secondNumber;
-        break;
-      case '/':
-        if (secondNumber != 0) {
-          result = firstNumber / secondNumber;
-        } else {
-          print("Error: Division by zero is not allowed.");
-          continue;
-        }
-        break;
-      default:
-        print("Invalid operator. Please use +, -, *, or /.");
-        continue;
+  double result;
+
+  if (operator == '+') {
+    result = num1 + num2;
+  } else if (operator == '-') {
+    result = num1 - num2;
+  } else if (operator == '*') {
+    result = num1 * num2;
+  } else if (operator == '/') {
+    if (num2 != 0) {
+      result = num1 / num2;
+    } else {
+      print("Error: Division by zero is not allowed.");
+      return;
     }
-
-    // Display the result
-    print("Result: $firstNumber $operator $secondNumber = $result");
-
-    // Ask the user if they want to perform another calculation
-    stdout.write("Do you want to perform another calculation? (yes/no): ");
-    String continueCalculation = stdin.readLineSync()!.toLowerCase();
-    if (continueCalculation != "yes") {
-      break;
-    }
+  } else {
+    print("Error: Invalid operator");
+    return;
   }
 
-  print("Thank you for using the Basic Calculator!");
+  print("Result: $result");
 }
